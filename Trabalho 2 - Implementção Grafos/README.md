@@ -11,7 +11,10 @@ Este repositório contém a implementação de um estudo de Grafos. O programa p
 5. **Inserir** uma nova aresta.  
 6. **Remover** arestas.  
 7. **Editar** a coordenada dos vértices.  
-8. **Exportar** o grafo para um arquivo de texto.  
+8. **Consultar** o primeiro adjacente um vértice.
+9. **Consultar** o próximo adjacente de um vértice a partir de um adjacente informado.
+10. **Consultar** a lista completa de adjacentes de um vértice;
+11. **Exportar** o grafo para um arquivo de texto.
 
 ## Formato do Arquivo
 
