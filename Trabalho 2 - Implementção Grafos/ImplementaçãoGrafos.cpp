@@ -24,6 +24,7 @@ void criarGrafo(bool dir, int vertices) {
     direcionado = dir;
     numVertices = vertices;
     adjacencias.resize(vertices);
+    coordenadas.resize(vertices);
 }
 
 void exibirAdjacencias() {
@@ -161,6 +162,40 @@ void exportarGrafo(const char *arquivo) {
     cout << "Grafo exportado com sucesso!\n";
 }
 
+void consultarPrimeiroAdjacente(int vertice) {
+    if (!adjacencias[vertice].empty()) {
+        cout << "Primeiro adjacente do vértice " << vertice << ": " << adjacencias[vertice][0].vertice << endl;
+    } else {
+        cout << "O vértice " << vertice << " não possui adjacências.\n";
+    }
+}
+
+void consultarProximoAdjacente(int vertice, int adjAtual) {
+    bool encontrado = false;
+    for (size_t i = 0; i < adjacencias[vertice].size(); ++i) {
+        if (adjacencias[vertice][i].vertice == adjAtual && i + 1 < adjacencias[vertice].size()) {
+            cout << "Próximo adjacente após " << adjAtual << ": " << adjacencias[vertice][i + 1].vertice << endl;
+            encontrado = true;
+            break;
+        }
+    }
+    if (!encontrado) {
+        cout << "Não há próximo adjacente para o vértice " << vertice << " após " << adjAtual << ".\n";
+    }
+}
+
+void consultarListaAdjacentes(int vertice) {
+    if (!adjacencias[vertice].empty()) {
+        cout << "Lista de adjacentes do vértice " << vertice << ": ";
+        for (const Aresta &aresta : adjacencias[vertice]) {
+            cout << aresta.vertice << " ";
+        }
+        cout << endl;
+    } else {
+        cout << "O vértice " << vertice << " não possui adjacências.\n";
+    }
+}
+
 void exibirMenu() {
     cout << "===== Menu Principal =====\n";
     cout << "1. Importar Grafo\n";
@@ -171,6 +206,9 @@ void exibirMenu() {
     cout << "6. Remover Aresta\n";
     cout << "7. Editar Coordenada\n";
     cout << "8. Exportar Grafo\n";
+    cout << "9. Consultar Primeiro Adjacente\n";
+    cout << "10. Consultar Próximo Adjacente\n";
+    cout << "11. Consultar Lista Completa de Adjacentes\n";
     cout << "0. Sair\n\n";
     cout << "Escolha: ";
 }
@@ -244,6 +282,27 @@ int main() {
             cout << "Digite o nome do arquivo para exportar o grafo: ";
             cin >> arquivo;
             exportarGrafo(arquivo);
+            break;
+        }
+        case 9: {
+            int vertice;
+            cout << "Digite o vértice: ";
+            cin >> vertice;
+            consultarPrimeiroAdjacente(vertice);
+            break;
+        }
+        case 10: {
+            int vertice, adjAtual;
+            cout << "Digite o vértice e o adjacente atual (vértice adjAtual): ";
+            cin >> vertice >> adjAtual;
+            consultarProximoAdjacente(vertice, adjAtual);
+            break;
+        }
+        case 11: {
+            int vertice;
+            cout << "Digite o vértice: ";
+            cin >> vertice;
+            consultarListaAdjacentes(vertice);
             break;
         }
         default:
