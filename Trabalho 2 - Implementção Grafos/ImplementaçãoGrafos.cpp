@@ -293,12 +293,22 @@ int main()
         case 2:
         {
             int vertices;
+            char escolha;
+
+            cout << "O grafo será direcionado? (s/n): ";
+            cin >> escolha;
+
+            bool direcionado = (escolha == 's' || escolha == 'S');
+
             cout << "Digite o número de vértices: ";
             cin >> vertices;
-            criarGrafo(false, vertices);
-            cout << "Grafo vazio criado com " << vertices << " vértices.\n";
+
+            criarGrafo(direcionado, vertices);
+            cout << "\nGrafo vazio" << (direcionado ? " direcionado " : " não direcionado ") << "criado com " << vertices << " vértices.\n";
+
             break;
         }
+
         case 3:
             exibirAdjacencias();
             break;
