@@ -253,12 +253,13 @@ void exibirMenu()
     cout << "3. Exibir Adjacências\n";
     cout << "4. Consultar Adjacência\n";
     cout << "5. Inserir Aresta\n";
-    cout << "6. Remover Aresta\n";
-    cout << "7. Editar Coordenada\n";
-    cout << "8. Consultar Primeiro Adjacente\n";
-    cout << "9. Consultar Próximo Adjacente\n";
-    cout << "10. Consultar Lista Completa de Adjacentes\n";
-    cout << "11. Exportar Grafo\n";
+    cout << "6. Inserir arestas em conjunto\n";
+    cout << "7. Remover Aresta\n";
+    cout << "8. Editar Coordenada\n";
+    cout << "9. Consultar Primeiro Adjacente\n";
+    cout << "10. Consultar Próximo Adjacente\n";
+    cout << "11. Consultar Lista Completa de Adjacentes\n";
+    cout << "12. Exportar Grafo\n";
     cout << "0. Sair\n\n";
     cout << "Escolha: ";
 }
@@ -331,6 +332,27 @@ int main()
         }
         case 6:
         {
+            int v1, v2, peso, numfor;
+            cout << "Digite o numero de arestas: ";
+            cin >> numfor;
+
+            for (int i = 0; i < numfor; i++)
+            {
+                cout << "Digite os vértices e o peso da aresta (v1 v2 peso): ";
+                cin >> v1 >> v2 >> peso;
+
+                adjacencias[v1].push_back({v2, peso});
+                if (!direcionado)
+                {
+                    adjacencias[v2].push_back({v1, peso});
+                }
+            }
+
+            cout << "Arestas inseridas!\n";
+            break;
+        }
+        case 7:
+        {
             int v1, v2;
             cout << "Digite os vértices da aresta para remover (v1 v2): ";
             cin >> v1 >> v2;
@@ -338,7 +360,7 @@ int main()
             cout << "Aresta removida!\n";
             break;
         }
-        case 7:
+        case 8:
         {
             int vertice, x, y;
             cout << "Digite o vértice e as novas coordenadas (vértice x y): ";
@@ -346,7 +368,7 @@ int main()
             editarCoordenada(vertice, x, y);
             break;
         }
-        case 8:
+        case 9:
         {
             int vertice;
             cout << "Digite o vértice: ";
@@ -354,7 +376,7 @@ int main()
             consultarPrimeiroAdjacente(vertice);
             break;
         }
-        case 9:
+        case 10:
         {
             int vertice, adjAtual;
             cout << "Digite o vértice e o adjacente atual (vértice adjAtual): ";
@@ -362,7 +384,7 @@ int main()
             consultarProximoAdjacente(vertice, adjAtual);
             break;
         }
-        case 10:
+        case 11:
         {
             int vertice;
             cout << "Digite o vértice: ";
@@ -370,7 +392,7 @@ int main()
             consultarListaAdjacentes(vertice);
             break;
         }
-        case 11:
+        case 12:
         {
             char arquivo[256];
             cout << "Digite o nome do arquivo para exportar o grafo: ";
@@ -378,6 +400,7 @@ int main()
             exportarGrafo(arquivo);
             break;
         }
+
         default:
             cout << "Opção inválida!\n";
         }
