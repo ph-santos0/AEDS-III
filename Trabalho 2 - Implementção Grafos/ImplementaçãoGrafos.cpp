@@ -38,9 +38,9 @@ void exibirAdjacencias()
         cout << "Vértice " << i << ":";
         if (!adjacencias[i].empty())
         {
-            for (const Aresta &aresta : adjacencias[i])
+            for (int j = 0; j < adjacencias[i].size(); ++j)
             {
-                cout << " -> " << aresta.vertice << " ";
+                cout << " -> " << adjacencias[i][j].vertice << " ";
             }
         }
         else
@@ -54,9 +54,9 @@ void exibirAdjacencias()
 
 bool consultarAdjacencia(int v1, int v2)
 {
-    for (const Aresta &aresta : adjacencias[v1])
+    for (int i = 0; i < adjacencias[v1].size(); ++i)
     {
-        if (aresta.vertice == v2)
+        if (adjacencias[v1][i].vertice == v2)
         {
             return true;
         }
@@ -77,11 +77,11 @@ void removerAresta(int v1, int v2)
 {
     auto removeAdjacencia = [](int origem, int destino)
     {
-        for (auto it = adjacencias[origem].begin(); it != adjacencias[origem].end(); ++it)
+        for (int i = 0; i < adjacencias[origem].size(); ++i)
         {
-            if (it->vertice == destino)
+            if (adjacencias[origem][i].vertice == destino)
             {
-                adjacencias[origem].erase(it);
+                adjacencias[origem].erase(adjacencias[origem].begin() + i);
                 break;
             }
         }
@@ -166,10 +166,10 @@ void exportarGrafo(const char *arquivo)
 
     for (int i = 0; i < adjacencias.size(); ++i)
     {
-        for (const Aresta &aresta : adjacencias[i])
+        for (int j = 0; j < adjacencias[i].size(); ++j)
         {
             int v1 = i;
-            int v2 = aresta.vertice;
+            int v2 = adjacencias[i][j].vertice;
             if (direcionado || v1 < v2)
             {
                 arestasExportadas.push_back({v1, v2});
@@ -180,15 +180,15 @@ void exportarGrafo(const char *arquivo)
 
     file << numArestas << endl;
 
-    for (const auto &par : arestasExportadas)
+    for (int i = 0; i < arestasExportadas.size(); ++i)
     {
-        int v1 = par.first;
-        int v2 = par.second;
-        for (const Aresta &aresta : adjacencias[v1])
+        int v1 = arestasExportadas[i].first;
+        int v2 = arestasExportadas[i].second;
+        for (int j = 0; j < adjacencias[v1].size(); ++j)
         {
-            if (aresta.vertice == v2)
+            if (adjacencias[v1][j].vertice == v2)
             {
-                file << v1 << " " << v2 << " " << aresta.peso << endl;
+                file << v1 << " " << v2 << " " << adjacencias[v1][j].peso << endl;
                 break;
             }
         }
@@ -213,7 +213,7 @@ void consultarPrimeiroAdjacente(int vertice)
 void consultarProximoAdjacente(int vertice, int adjAtual)
 {
     bool encontrado = false;
-    for (size_t i = 0; i < adjacencias[vertice].size(); ++i)
+    for (int i = 0; i < adjacencias[vertice].size(); ++i)
     {
         if (adjacencias[vertice][i].vertice == adjAtual && i + 1 < adjacencias[vertice].size())
         {
@@ -233,9 +233,9 @@ void consultarListaAdjacentes(int vertice)
     if (!adjacencias[vertice].empty())
     {
         cout << "Lista de adjacentes do vértice " << vertice << ": ";
-        for (const Aresta &aresta : adjacencias[vertice])
+        for (int i = 0; i < adjacencias[vertice].size(); ++i)
         {
-            cout << aresta.vertice << " ";
+            cout << adjacencias[vertice][i].vertice << " ";
         }
         cout << endl;
     }
