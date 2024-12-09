@@ -75,21 +75,25 @@ void inserirAresta(int v1, int v2, int peso)
 
 void removerAresta(int v1, int v2)
 {
-    auto removeAdjacencia = [](int origem, int destino)
+    for (int i = 0; i < adjacencias[v1].size(); ++i)
     {
-        for (int i = 0; i < adjacencias[origem].size(); ++i)
+        if (adjacencias[v1][i].vertice == v2)
         {
-            if (adjacencias[origem][i].vertice == destino)
+            adjacencias[v1].erase(adjacencias[v1].begin() + i);
+            break;
+        }
+    }
+
+    if (!direcionado)
+    {
+        for (int i = 0; i < adjacencias[v2].size(); ++i)
+        {
+            if (adjacencias[v2][i].vertice == v1)
             {
-                adjacencias[origem].erase(adjacencias[origem].begin() + i);
+                adjacencias[v2].erase(adjacencias[v2].begin() + i);
                 break;
             }
         }
-    };
-    removeAdjacencia(v1, v2);
-    if (!direcionado)
-    {
-        removeAdjacencia(v2, v1);
     }
 }
 
