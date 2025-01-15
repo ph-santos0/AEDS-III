@@ -9,6 +9,7 @@ struct Coordenada
 {
     int x;
     int y;
+    string nome;
 };
 
 struct Aresta
@@ -21,6 +22,7 @@ bool direcionado;
 int numVertices;
 vector<Coordenada> coordenadas;
 vector<vector<Aresta>> adjacencias;
+vector<string> nomes;
 
 void criarGrafo(bool dir, int vertices)
 {
@@ -28,6 +30,7 @@ void criarGrafo(bool dir, int vertices)
     numVertices = vertices;
     adjacencias.resize(vertices);
     coordenadas.resize(vertices);
+    nomes.resize(vertices);
 }
 
 void exibirAdjacencias()
