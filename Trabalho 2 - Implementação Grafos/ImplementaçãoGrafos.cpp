@@ -22,6 +22,12 @@ int numVertices;
 vector<Coordenada> coordenadas;
 vector<vector<Aresta>> adjacencias;
 
+void limparGrafo()
+{
+    coordenadas.clear();
+    adjacencias.clear();
+}
+
 void criarGrafo(bool dir, int vertices)
 {
     direcionado = dir;
@@ -33,12 +39,12 @@ void criarGrafo(bool dir, int vertices)
 void exibirAdjacencias()
 {
     cout << "===== Adjacências =====\n";
-    for (int i = 0; i < numVertices; ++i)
+    for (int i = 0; i < numVertices; i++)
     {
         cout << "Vértice " << i << ":";
         if (!adjacencias[i].empty())
         {
-            for (int j = 0; j < adjacencias[i].size(); ++j)
+            for (int j = 0; j < adjacencias[i].size(); j++)
             {
                 cout << " -> " << adjacencias[i][j].vertice << " ";
             }
@@ -54,7 +60,7 @@ void exibirAdjacencias()
 
 bool consultarAdjacencia(int v1, int v2)
 {
-    for (int i = 0; i < adjacencias[v1].size(); ++i)
+    for (int i = 0; i < adjacencias[v1].size(); i++)
     {
         if (adjacencias[v1][i].vertice == v2)
         {
@@ -75,7 +81,7 @@ void inserirAresta(int v1, int v2, int peso)
 
 void removerAresta(int v1, int v2)
 {
-    for (int i = 0; i < adjacencias[v1].size(); ++i)
+    for (int i = 0; i < adjacencias[v1].size(); i++)
     {
         if (adjacencias[v1][i].vertice == v2)
         {
@@ -86,7 +92,7 @@ void removerAresta(int v1, int v2)
 
     if (!direcionado)
     {
-        for (int i = 0; i < adjacencias[v2].size(); ++i)
+        for (int i = 0; i < adjacencias[v2].size(); i++)
         {
             if (adjacencias[v2][i].vertice == v1)
             {
@@ -127,7 +133,7 @@ void importarGrafo(const char *arquivo)
     coordenadas.resize(numVertices);
     adjacencias.resize(numVertices);
 
-    for (int i = 0; i < numVertices; ++i)
+    for (int i = 0; i < numVertices; i++)
     {
         int id, x, y;
         file >> id >> x >> y;
@@ -137,7 +143,7 @@ void importarGrafo(const char *arquivo)
     int numArestas;
     file >> numArestas;
 
-    for (int i = 0; i < numArestas; ++i)
+    for (int i = 0; i < numArestas; i++)
     {
         int v1, v2, peso;
         file >> v1 >> v2 >> peso;
@@ -160,7 +166,7 @@ void exportarGrafo(const char *arquivo)
     file << "direcionado=" << (direcionado ? "sim" : "nao") << endl;
     file << numVertices << endl;
 
-    for (int i = 0; i < numVertices; ++i)
+    for (int i = 0; i < numVertices; i++)
     {
         file << i << " " << coordenadas[i].x << " " << coordenadas[i].y << endl;
     }
@@ -168,9 +174,9 @@ void exportarGrafo(const char *arquivo)
     vector<pair<int, int>> arestasExportadas;
     int numArestas = 0;
 
-    for (int i = 0; i < adjacencias.size(); ++i)
+    for (int i = 0; i < adjacencias.size(); i++)
     {
-        for (int j = 0; j < adjacencias[i].size(); ++j)
+        for (int j = 0; j < adjacencias[i].size(); j++)
         {
             int v1 = i;
             int v2 = adjacencias[i][j].vertice;
@@ -184,11 +190,11 @@ void exportarGrafo(const char *arquivo)
 
     file << numArestas << endl;
 
-    for (int i = 0; i < arestasExportadas.size(); ++i)
+    for (int i = 0; i < arestasExportadas.size(); i++)
     {
         int v1 = arestasExportadas[i].first;
         int v2 = arestasExportadas[i].second;
-        for (int j = 0; j < adjacencias[v1].size(); ++j)
+        for (int j = 0; j < adjacencias[v1].size(); j++)
         {
             if (adjacencias[v1][j].vertice == v2)
             {
@@ -217,7 +223,7 @@ void consultarPrimeiroAdjacente(int vertice)
 void consultarProximoAdjacente(int vertice, int adjAtual)
 {
     bool encontrado = false;
-    for (int i = 0; i < adjacencias[vertice].size(); ++i)
+    for (int i = 0; i < adjacencias[vertice].size(); i++)
     {
         if (adjacencias[vertice][i].vertice == adjAtual && i + 1 < adjacencias[vertice].size())
         {
@@ -237,7 +243,7 @@ void consultarListaAdjacentes(int vertice)
     if (!adjacencias[vertice].empty())
     {
         cout << "Lista de adjacentes do vértice " << vertice << ": ";
-        for (int i = 0; i < adjacencias[vertice].size(); ++i)
+        for (int i = 0; i < adjacencias[vertice].size(); i++)
         {
             cout << adjacencias[vertice][i].vertice << " ";
         }
@@ -289,6 +295,7 @@ int main()
         {
         case 1:
         {
+            limparGrafo();
             char arquivo[256];
             cout << "Digite o nome do arquivo para importar o grafo: ";
             cin >> arquivo;
@@ -297,6 +304,7 @@ int main()
         }
         case 2:
         {
+            limparGrafo();
             int vertices;
             char escolha;
 
