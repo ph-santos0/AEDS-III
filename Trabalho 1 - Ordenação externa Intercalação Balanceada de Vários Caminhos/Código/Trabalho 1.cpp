@@ -6,7 +6,6 @@
 
 using namespace std;
 
-// Funções
 void criarFitas();
 void abrirFitas();
 void externalSort();
@@ -17,7 +16,6 @@ void intercalacar();
 void gerarSaida(int fitaFinal);
 void fecharFitas();
 
-// Variáveis
 ifstream* fitasLeitura;
 ofstream* fitasGravacao;
 
@@ -77,10 +75,9 @@ void ordenacaoExterna() {
         return;
     }
     
-    // Ler quantidade de fitas, tamanho da memória e palavra a ser ordenada
     entrada >> tamanhoMemoria >> quantidadeFitas;
     string dados;
-    entrada.ignore();  // Ignorar o caractere de nova linha
+    entrada.ignore();
     getline(entrada, dados);
     entrada.close();
 
