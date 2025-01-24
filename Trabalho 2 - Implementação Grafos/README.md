@@ -19,10 +19,37 @@ Este repositório contém a implementação de um estudo de Grafos. O programa p
 
 ## Formato do Arquivo
 
-A importação e exportação do grafo utiliza o seguinte formato:
+O grafo será importado e exportado em um arquivo de texto com o seguinte formato:
 
-1. Uma linha indicando se o grafo é direcionado ou não.  
-2. Uma linha com um número indicando a quantidade de vértices.  
-3. Uma linha para cada vértice contendo sua identificação e sua coordenada (x, y), em uma escala de 0 a 100.  
-4. Uma linha contendo a quantidade de arestas.  
-5. Uma linha para cada aresta, indicando o vértice de origem, o vértice de destino e o peso.  
+1. **Linha 1**: Indica se o grafo é direcionado (`sim` ou `nao`).
+2. **Linha 2**: Número de vértices.
+3. **Próximas linhas**: Identificação e coordenadas `(x, y)` de cada vértice (em escala de 0 a 100).
+4. **Linha seguinte**: Quantidade de arestas.
+5. **Próximas linhas**: Origem, destino e peso de cada aresta.
+
+#### Exemplo de entrada:
+```text
+direcionado=nao
+10
+0 1 1
+1 50 20
+2 10 30
+3 12 50
+4 15 70
+5 20 90
+6 25 11
+7 30 12
+8 35 15
+9 40 20
+10
+0 1 50
+0 9 20
+1 2 35
+2 3 1
+3 4 10
+4 5 28
+5 6 13
+6 7 41
+7 8 8
+8 9 39
+```
