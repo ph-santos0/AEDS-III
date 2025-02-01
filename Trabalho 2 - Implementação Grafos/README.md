@@ -6,7 +6,7 @@ Este repositório contém a implementação de um estudo de Grafos. O programa p
 
 1. **Importar** um grafo de um arquivo de texto.  
 2. **Criar** um grafo vazio a partir de um número de vértices informado pelo usuário.  
-3. **Exibir** as adjacências (matriz ou lista de adjacências).  
+3. **Exibir** as adjacências.  
 4. **Consultar** se um vértice é adjacente a outro.  
 5. **Inserir** uma nova aresta.
 6. **Inserir** arestas em conunto.  
