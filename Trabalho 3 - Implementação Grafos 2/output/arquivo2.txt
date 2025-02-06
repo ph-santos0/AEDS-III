@@ -1,0 +1,41 @@
+direcionado=nao
+18
+0 5 5 Pedro Santos
+1 15 10 Fábio Milagres
+2 20 25 Julya Alves
+3 25 35 Daniel Santos
+4 30 45 João Dupim
+5 35 55 Victor Gabriel
+6 40 20 Valter Santos
+7 45 30 Marlene Gomes
+8 50 40 Tiago Gomes
+9 55 50 Lucas Arcas
+10 60 60 Matheus Abreu
+11 10 40 Isa Magalhães
+12 20 50 Ynná Evany
+13 30 60 Rian Alves
+14 40 70 Henrique Sales
+15 50 80 Rosinei Figueiredo
+16 60 90 Wesley Filho
+17 70 100 Roseana Pereira
+20
+0 1 15
+0 11 10
+1 2 20
+1 11 12
+2 3 5
+3 4 10
+3 12 25
+4 5 8
+4 13 15
+5 6 7
+6 7 12
+7 8 5
+8 9 10
+9 10 20
+10 15 18
+11 12 15
+12 13 10
+13 14 12
+14 15 14
+15 16 10
